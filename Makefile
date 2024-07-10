@@ -21,7 +21,7 @@ docs/sbctl.%: docs/sbctl.%.txt docs/asciidoc.conf
 
 .PHONY: sbctl
 sbctl:
-	go build -o $@ ./cmd/$@
+	CGO_ENABLED=0 go build -a -x -ldflags '-extldflags "-static"' -o $@ ./cmd/$@
 
 .PHONY: completions
 completions: sbctl
